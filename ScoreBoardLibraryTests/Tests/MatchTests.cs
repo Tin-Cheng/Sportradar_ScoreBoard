@@ -1,13 +1,12 @@
 ﻿using ScoreBoardLibrary.Classes;
 using ScoreBoardLibrary.Enums;
-
+using ScoreBoardLibraryTests;
 namespace ScoreBoardLibraryTests;
 
-public class MatchTests
+public partial class Tests
 {
     [Theory]
-    [InlineData("Mexico","Canada")]
-    [InlineData("Spain","Brazil")]
+    [MemberData(nameof(TestDataWithoutScore))]
     public void CreateMatch(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
@@ -19,8 +18,7 @@ public class MatchTests
         Assert.Equal(MatchStatus.NOT_STARTED,match.Status);
     }
     [Theory]
-    [InlineData("Mexico","Canada")]
-    [InlineData("Spain","Brazil")]
+    [MemberData(nameof(TestDataWithoutScore))]
     public void CreateMatchAndStartMatch(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
@@ -31,8 +29,7 @@ public class MatchTests
         Assert.Equal(MatchStatus.INPROGRESS,match.Status);
     }
     [Theory]
-    [InlineData("Mexico",0,"Canada",5)]
-    [InlineData("Spain",10,"Brazil",2)]
+    [MemberData(nameof(TestDataWithScore))]
     public void CreateMatchAndUpdateScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
     {
         var homeTeam = new Team(homeTeamName);
@@ -45,8 +42,7 @@ public class MatchTests
     }
 
     [Theory]
-    [InlineData("Mexico","Canada")]
-    [InlineData("Spain","Brazil")]
+    [MemberData(nameof(TestDataWithoutScore))]
     public void CreateMatchAndFinishMatch(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);

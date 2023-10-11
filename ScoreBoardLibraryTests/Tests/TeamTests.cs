@@ -2,11 +2,10 @@
 using ScoreBoardLibrary.Classes;
 namespace ScoreBoardLibraryTests;
 
-public class TeamTests
+public partial class Tests
 {
     [Theory]
-    [InlineData("Mexico")]
-    [InlineData("Canada")]
+    [MemberData(nameof(TestDataAllTeams))]
     public void CreateTeam(string name)
     {
         var team = new Team(name);

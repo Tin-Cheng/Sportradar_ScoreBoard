@@ -29,4 +29,13 @@ public class Match: IMatch
         Status = MatchStatus.FINISHED;
     }
 
+    public void GetMatchName()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GetMatchNameWithScore()
+    {
+        throw new NotImplementedException();
+    }
 }

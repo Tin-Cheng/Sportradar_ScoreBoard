@@ -12,4 +12,7 @@ public interface IMatch{
     public void StartMatch();
     public void UpdateScore(int homeScore, int awayScore);
     public void FinishMatch();
+
+    public void GetMatchName();
+    public void GetMatchNameWithScore();
 }
