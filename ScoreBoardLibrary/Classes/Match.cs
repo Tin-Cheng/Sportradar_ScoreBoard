@@ -29,12 +29,12 @@ public class Match: IMatch
         Status = MatchStatus.FINISHED;
     }
 
-    public void GetMatchName()
+    public string GetMatchName()
     {
-        throw new NotImplementedException();
+        return HomeTeam.Name + " - " + AwayTeam.Name;
     }
 
-    public void GetMatchNameWithScore()
+    public string GetMatchNameWithScore()
     {
         throw new NotImplementedException();
     }

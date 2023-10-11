@@ -5,33 +5,26 @@ namespace ScoreBoardLibrary.Classes;
 
 public class ScoreBoard : IScoreBoard
 {
-    public string Name => throw new NotImplementedException();
-
-    public List<System.Text.RegularExpressions.Match> MatchList => throw new NotImplementedException();
-
-    List<IMatch> IScoreBoard.MatchList => throw new NotImplementedException();
-
-    public void AddMatch(IMatch match)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<System.Text.RegularExpressions.Match> GetSummaryOfMatches()
-    {
-        throw new NotImplementedException();
-    }
-
-    List<IMatch> IScoreBoard.GetSummaryOfMatches()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IMatch FindMatch(string matchName)
-    {
-        throw new NotImplementedException();
-    }
+    public string Name {get; private set;}
+    public List<IMatch> MatchList {get;private set;}
 
     public ScoreBoard(string name){
-
+        Name = name;
+        MatchList = new List<IMatch>();
+    }    
+    public void AddMatch(IMatch match)
+    {
+        MatchList.Add(match);
     }
+
+    public List<IMatch> GetSummaryOfMatches()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IMatch? FindMatch(string matchName)
+    {
+        return MatchList.Find(x => x.GetMatchName().Equals(matchName));
+    }
+
 }

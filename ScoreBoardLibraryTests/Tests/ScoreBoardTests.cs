@@ -15,16 +15,15 @@ public partial class Tests
 
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateScoreBoardAndOneMatch(string homeTeamName,string awayTeamName)
+    public void CreateScoreBoardAndAddOneMatch(string homeTeamName,string awayTeamName)
     {
-        
         var scoreBoard = new ScoreBoard(boardName);
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
 
         var match = new Match(homeTeam,awayTeam);
         scoreBoard.AddMatch(match);
-        var matchName = homeTeam + " - " + awayTeamName;
+        var matchName = homeTeamName + " - " + awayTeamName;
 
         Assert.Single(scoreBoard.MatchList);
         Assert.Equal(match,scoreBoard.FindMatch(matchName));
