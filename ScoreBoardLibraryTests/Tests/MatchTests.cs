@@ -15,7 +15,7 @@ public class MatchTests
         var match = new Match(homeTeam,awayTeam);
         Assert.Equal(match.HomeTeam.Name,homeTeamName);
         Assert.Equal(match.AwayTeam.Name,awayTeamName);
-        Assert.Equal(MatchStatus.NOT_STARTED,match.Status);
+        Assert.Equal(MatchStatus.PENDING,match.Status);
     }
     [Fact]
     public void Create_Match_With_Null_Should_Throw_Exception()
@@ -67,7 +67,7 @@ public class MatchTests
         Assert.Throws<Exception>(()=> match.StartMatch());
     }
     [Fact]
-    public void CreateMatch_StartFinishedMatch_ShouldThrowException()
+    public void Start_A_Finished_Match_Should_Throw_Exception()
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -77,7 +77,7 @@ public class MatchTests
         Assert.Throws<Exception>(()=> match.StartMatch());
     }
     [Fact]
-    public void Finish_Match_Before_Start_Should_Throw_Exception()
+    public void Finish_Pending_Match_Should_Throw_Exception()
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");

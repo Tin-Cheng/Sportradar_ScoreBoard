@@ -21,11 +21,11 @@ public class Match: IMatch
         }
         HomeTeam = homeTeam;
         AwayTeam = awayTeam;
-        Status = MatchStatus.NOT_STARTED;
+        Status = MatchStatus.PENDING;
     }
 
     public void StartMatch(DateTime? startDateTime = null){
-        if(Status != MatchStatus.NOT_STARTED){
+        if(Status != MatchStatus.PENDING){
             throw new Exception("The match is started already!");
         }
         Status = MatchStatus.INPROGRESS;

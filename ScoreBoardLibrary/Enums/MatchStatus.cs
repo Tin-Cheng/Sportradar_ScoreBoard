@@ -2,7 +2,7 @@
 
 public enum MatchStatus
 {
-    NOT_STARTED = 0,
+    PENDING = 0,
     INPROGRESS,
     FINISHED,
 }
