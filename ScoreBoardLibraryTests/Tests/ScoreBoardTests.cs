@@ -15,7 +15,7 @@ public partial class Tests
 
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateScoreBoardAndAddOneMatch(string homeTeamName,string awayTeamName)
+    public void CreateScoreBoard_AddOneMatch(string homeTeamName,string awayTeamName)
     {
         var scoreBoard = new ScoreBoard(boardName);
         var homeTeam = new Team(homeTeamName);
@@ -27,6 +27,70 @@ public partial class Tests
 
         Assert.Single(scoreBoard.MatchList);
         Assert.Equal(match,scoreBoard.FindMatch(matchName));
+    }
+    
+    [Theory]
+    [MemberData(nameof(TestDataWithoutScore))]
+    public void CreateScoreBoard_CreateMatchesSameTeamWithOutFinishing_ShouldThrowException(string homeTeamName,string awayTeamName)
+    {
+        
+        var scoreBoard = new ScoreBoard(boardName);
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+
+        var firstMatch = new Match(homeTeam,awayTeam);
+        scoreBoard.AddMatch(firstMatch);
+        var secondMatch = new Match(homeTeam,awayTeam);
+        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
+    }
+    
+    [Theory]
+    [MemberData(nameof(TestDataWithoutScore))]
+    public void CreateScoreBoard_CreateMatchesWithSameTeamWithFinishing_ShouldRunWithoutException(string homeTeamName,string awayTeamName)
+    {
+        
+        var scoreBoard = new ScoreBoard(boardName);
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+
+        var firstMatch = new Match(homeTeam,awayTeam);
+        scoreBoard.AddMatch(firstMatch);
+        firstMatch.FinishMatch();
+        var secondMatch = new Match(homeTeam,awayTeam);
+        var ex = Record.Exception(()=>scoreBoard.AddMatch(secondMatch));
+        Assert.Null(ex);
+    }
+
+    
+    [Theory]
+    [MemberData(nameof(TestDataWithoutScore))]
+    public void CreateScoreBoard_CreateMatch_HomeTeamNotFinished_ShouldThrowException(string homeTeamName,string awayTeamName)
+    {
+        
+        var scoreBoard = new ScoreBoard(boardName);
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+        var fooTeam = new Team("foo");
+
+        var firstMatch = new Match(homeTeam,awayTeam);
+        scoreBoard.AddMatch(firstMatch);
+        var secondMatch = new Match(homeTeam,fooTeam);
+        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
+    }
+    [Theory]
+    [MemberData(nameof(TestDataWithoutScore))]
+    public void CreateScoreBoard_CreateMatch_AwayTeamNotFinished_ShouldThrowException(string homeTeamName,string awayTeamName)
+    {
+        
+        var scoreBoard = new ScoreBoard(boardName);
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+        var fooTeam = new Team("foo");
+
+        var firstMatch = new Match(homeTeam,awayTeam);
+        scoreBoard.AddMatch(firstMatch);
+        var secondMatch = new Match(fooTeam,awayTeam);
+        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
     }
 
     [Fact]

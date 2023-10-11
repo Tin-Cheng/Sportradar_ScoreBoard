@@ -19,7 +19,7 @@ public partial class Tests
     }
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatchAndStartMatch(string homeTeamName,string awayTeamName)
+    public void CreateMatch_StartMatch(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -31,7 +31,7 @@ public partial class Tests
     }
     [Theory]
     [MemberData(nameof(TestDataWithScore))]
-    public void CreateMatchAndUpdateScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
+    public void CreateMatch_UpdateScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -45,7 +45,7 @@ public partial class Tests
 
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatchAndFinishMatch(string homeTeamName,string awayTeamName)
+    public void CreateMatch_FinishMatch(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -58,7 +58,7 @@ public partial class Tests
 
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatchAndGetMatchName(string homeTeamName,string awayTeamName)
+    public void CreateMatch_GetMatchName(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -72,7 +72,7 @@ public partial class Tests
 
     [Theory]
     [MemberData(nameof(TestDataWithScore))]
-    public void CreateMatchAndGetMatchNameWithScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
+    public void CreateMatch_GetMatchNameWithScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
