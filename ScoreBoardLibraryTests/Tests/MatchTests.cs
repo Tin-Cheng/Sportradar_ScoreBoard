@@ -54,4 +54,36 @@ public partial class Tests
 
     }
 
+    [Theory]
+    [MemberData(nameof(TestDataWithoutScore))]
+    public void CreateMatchAndGetMatchName(string homeTeamName,string awayTeamName)
+    {
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+
+        var match = new Match(homeTeam,awayTeam);
+        var matchName = homeTeamName + " - " + awayTeamName;
+        Assert.Equal(matchName,match.GetMatchName());
+
+    }
+
+
+    [Theory]
+    [MemberData(nameof(TestDataWithScore))]
+    public void CreateMatchAndGetMatchNameWithScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
+    {
+        var homeTeam = new Team(homeTeamName);
+        var awayTeam = new Team(awayTeamName);
+
+        var match = new Match(homeTeam,awayTeam);
+        match.UpdateScore(homeTeamScore,awayTeamScore);
+        var matchName = homeTeamName + " - " + awayTeamName;
+        var matchNameWithScore = string.Format("{0} {1} - {2} {3}"
+        ,homeTeamName 
+        ,homeTeamScore.ToString()
+        ,awayTeamName
+        ,awayTeamScore);
+        Assert.Equal(matchNameWithScore,match.GetMatchNameWithScore());
+    }
+
 }
