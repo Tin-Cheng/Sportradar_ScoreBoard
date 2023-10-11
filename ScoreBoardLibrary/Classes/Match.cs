@@ -11,7 +11,8 @@ public class Match
     public int AwayTeamScore {get;private set;}
 
     public Match(Team homeTeam,Team awayTeam){
-
+        HomeTeam = homeTeam;
+        AwayTeam = awayTeam;
     }
 
 }
