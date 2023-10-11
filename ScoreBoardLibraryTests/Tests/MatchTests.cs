@@ -25,6 +25,13 @@ public class MatchTests
         #pragma warning disable CS8625 // For testing null
     }
     [Theory]
+    [MemberData(nameof(TestData.TestDataAllTeams), MemberType = typeof(TestData))]
+    public void Create_Match_With_Same_Team_Should_Throw_Exception(string teamName)
+    {
+        var team = new Team(teamName);
+        Assert.Throws<Exception>(()=> new Match(team,team));
+    }
+    [Theory]
     [InlineData(0,-1)]
     [InlineData(-1,0)]
     [InlineData(999,-999)]

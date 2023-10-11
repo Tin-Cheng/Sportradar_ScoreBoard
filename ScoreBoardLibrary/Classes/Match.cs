@@ -16,6 +16,9 @@ public class Match: IMatch
         if(homeTeam == null || awayTeam == null){
             throw new Exception("Home Team and Away Team cannot be null!");
         }
+        if(homeTeam.Name.Equals(awayTeam.Name)){
+            throw new Exception("Home Team and Away Team cannot be the same team!");
+        }
         HomeTeam = homeTeam;
         AwayTeam = awayTeam;
         Status = MatchStatus.NOT_STARTED;
