@@ -16,7 +16,7 @@ public class MatchTests
         var match = new Match(homeTeam,awayTeam);
         Assert.Equal(match.HomeTeam.Name,homeTeamName);
         Assert.Equal(match.AwayTeam.Name,awayTeamName);
-        Assert.Equal(match.Status,MatchStatus.NOT_STARTED);
+        Assert.Equal(MatchStatus.NOT_STARTED,match.Status);
     }
     [Theory]
     [InlineData("Mexico","Canada")]
@@ -28,7 +28,7 @@ public class MatchTests
 
         var match = new Match(homeTeam,awayTeam);
         match.StartMatch();
-        Assert.Equal(match.Status,MatchStatus.INPROGRESS);
+        Assert.Equal(MatchStatus.INPROGRESS,match.Status);
     }
     [Theory]
     [InlineData("Mexico",0,"Canada",5)]
@@ -54,7 +54,7 @@ public class MatchTests
 
         var match = new Match(homeTeam,awayTeam);
         match.FinishMatch();
-        Assert.Equal(match.Status,MatchStatus.FINISHED);
+        Assert.Equal(MatchStatus.FINISHED,match.Status);
 
     }
 

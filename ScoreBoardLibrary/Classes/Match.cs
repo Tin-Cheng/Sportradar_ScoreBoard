@@ -14,17 +14,19 @@ public class Match: IMatch
     public Match(ITeam homeTeam,ITeam awayTeam){
         HomeTeam = homeTeam;
         AwayTeam = awayTeam;
+        Status = MatchStatus.NOT_STARTED;
     }
 
     public void StartMatch(){
-
+        Status = MatchStatus.INPROGRESS;
     }
     public void UpdateScore(int homeScore, int awayScore){
-
+        HomeTeamScore = homeScore;
+        AwayTeamScore = awayScore;
     }
 
     public void FinishMatch(){
-
+        Status = MatchStatus.FINISHED;
     }
 
 }
