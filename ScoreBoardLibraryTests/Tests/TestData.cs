@@ -29,4 +29,12 @@ public partial class Tests
         yield return new object[]{"Argentina"};
         yield return new object[]{"Australia"};
     }
+
+    public static IEnumerable<object[]> TestDataWithScoreInSummaryOrder(){
+        yield return new object[]{"Uruguay",6,"Italy",6};
+        yield return new object[]{"Spain",10,"Brazil",2};
+        yield return new object[]{"Mexico",0,"Canada",5};
+        yield return new object[]{"Argentina",3,"Australia",1};
+        yield return new object[]{"Germany",2,"France",2};
+    }
 }
