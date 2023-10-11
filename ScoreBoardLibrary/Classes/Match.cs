@@ -10,6 +10,7 @@ public class Match: IMatch
     public int HomeTeamScore {get; private set;}
     public int AwayTeamScore {get; private set;}
     public MatchStatus Status {get; private set;}
+    public DateTime StartDateTime{get; private set;}
 
     public Match(ITeam homeTeam,ITeam awayTeam){
         HomeTeam = homeTeam;
@@ -19,6 +20,7 @@ public class Match: IMatch
 
     public void StartMatch(){
         Status = MatchStatus.INPROGRESS;
+        StartDateTime = DateTime.UtcNow;
     }
     public void UpdateScore(int homeScore, int awayScore){
         HomeTeamScore = homeScore;
@@ -41,5 +43,9 @@ public class Match: IMatch
         ,HomeTeamScore.ToString()
         ,AwayTeam.Name
         ,AwayTeamScore);
+    }
+    public int GetTotalScore()
+    {
+        return HomeTeamScore + AwayTeamScore;
     }
 }

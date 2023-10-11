@@ -27,6 +27,7 @@ public partial class Tests
         var match = new Match(homeTeam,awayTeam);
         match.StartMatch();
         Assert.Equal(MatchStatus.INPROGRESS,match.Status);
+        Assert.Equal(DateTime.UtcNow,match.StartDateTime,TimeSpan.FromSeconds(1));
     }
     [Theory]
     [MemberData(nameof(TestDataWithScore))]
@@ -39,6 +40,7 @@ public partial class Tests
         match.UpdateScore(homeTeamScore,awayTeamScore);
         Assert.Equal(match.HomeTeamScore,homeTeamScore);
         Assert.Equal(match.AwayTeamScore,awayTeamScore);
+        Assert.Equal(match.GetTotalScore(),homeTeamScore+awayTeamScore);
     }
 
     [Theory]

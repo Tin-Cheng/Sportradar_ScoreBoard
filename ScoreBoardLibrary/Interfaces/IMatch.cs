@@ -6,13 +6,13 @@ public interface IMatch{
     ITeam AwayTeam {get;}
     int HomeTeamScore {get;}
     int AwayTeamScore {get;}
-
     MatchStatus Status {get;}
+    DateTime StartDateTime {get;}
 
     public void StartMatch();
     public void UpdateScore(int homeScore, int awayScore);
     public void FinishMatch();
-
     public string GetMatchName();
     public string GetMatchNameWithScore();
+    public int GetTotalScore();
 }

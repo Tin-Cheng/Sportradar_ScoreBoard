@@ -39,11 +39,12 @@ public partial class Tests
             scoreBoard.AddMatch(newMatch);
             newMatch.StartMatch();
             newMatch.UpdateScore((int)matchData[1],(int)matchData[3]);
+            System.Threading.Thread.Sleep(10);
         }
 
         var summaryList = scoreBoard.GetSummaryOfMatches().ToArray();
         var index = 0;
-        foreach(object[] matchData in TestDataWithScore()){
+        foreach(object[] matchData in TestDataWithScoreInSummaryOrder()){
             var homeTeamName = (string)matchData[0];
             var awayTeamName = (string)matchData[2];
             var homeTeamScore = (int)matchData[1];

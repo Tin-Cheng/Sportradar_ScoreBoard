@@ -19,7 +19,8 @@ public class ScoreBoard : IScoreBoard
 
     public List<IMatch> GetSummaryOfMatches()
     {
-        throw new NotImplementedException();
+        return MatchList.OrderByDescending(x => x.GetTotalScore())
+                .ThenByDescending(x => x.StartDateTime).ToList();
     }
 
     public IMatch? FindMatch(string matchName)
