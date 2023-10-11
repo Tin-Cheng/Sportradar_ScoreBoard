@@ -36,6 +36,10 @@ public class Match: IMatch
 
     public string GetMatchNameWithScore()
     {
-        throw new NotImplementedException();
+        return string.Format("{0} {1} - {2} {3}"
+        ,HomeTeam.Name 
+        ,HomeTeamScore.ToString()
+        ,AwayTeam.Name
+        ,AwayTeamScore);
     }
 }
