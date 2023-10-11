@@ -19,7 +19,8 @@ public class ScoreBoard : IScoreBoard
 
     public List<IMatch> GetSummaryOfMatches()
     {
-        return MatchList.OrderByDescending(x => x.GetTotalScore())
+        return MatchList.FindAll(x=>x.Status==MatchStatus.INPROGRESS)
+                .OrderByDescending(x => x.GetTotalScore())
                 .ThenByDescending(x => x.StartDateTime).ToList();
     }
 
@@ -27,5 +28,4 @@ public class ScoreBoard : IScoreBoard
     {
         return MatchList.Find(x => x.GetMatchName().Equals(matchName));
     }
-
 }
