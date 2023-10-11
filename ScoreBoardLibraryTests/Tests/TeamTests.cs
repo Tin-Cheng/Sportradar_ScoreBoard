@@ -1,6 +1,5 @@
 ﻿
-using ScoreBoardLibrary;
-using ScoreBoardLibrary.Interfaces;
+using ScoreBoardLibrary.Classes;
 namespace ScoreBoardLibraryTests;
 
 public class TeamTests
