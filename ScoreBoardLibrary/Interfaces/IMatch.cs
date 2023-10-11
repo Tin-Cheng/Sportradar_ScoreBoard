@@ -9,7 +9,7 @@ public interface IMatch{
     MatchStatus Status {get;}
     DateTime StartDateTime {get;}
 
-    public void StartMatch();
+    public void StartMatch(DateTime? startDateTime = null);
     public void UpdateScore(int homeScore, int awayScore);
     public void FinishMatch();
     public string GetMatchName();

@@ -22,7 +22,7 @@ public partial class Tests
         var awayTeam = new Team(awayTeamName);
 
         var match = new Match(homeTeam,awayTeam);
-        scoreBoard.AddMatch(match);
+        scoreBoard.AddAndStartMatch(match);
         var matchName = homeTeamName + " - " + awayTeamName;
 
         Assert.Single(scoreBoard.MatchList);
@@ -39,9 +39,9 @@ public partial class Tests
         var awayTeam = new Team(awayTeamName);
 
         var firstMatch = new Match(homeTeam,awayTeam);
-        scoreBoard.AddMatch(firstMatch);
+        scoreBoard.AddAndStartMatch(firstMatch);
         var secondMatch = new Match(homeTeam,awayTeam);
-        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
+        Assert.Throws<Exception>(()=>scoreBoard.AddAndStartMatch(secondMatch));
     }
     
     [Theory]
@@ -54,10 +54,10 @@ public partial class Tests
         var awayTeam = new Team(awayTeamName);
 
         var firstMatch = new Match(homeTeam,awayTeam);
-        scoreBoard.AddMatch(firstMatch);
+        scoreBoard.AddAndStartMatch(firstMatch);
         firstMatch.FinishMatch();
         var secondMatch = new Match(homeTeam,awayTeam);
-        var ex = Record.Exception(()=>scoreBoard.AddMatch(secondMatch));
+        var ex = Record.Exception(()=>scoreBoard.AddAndStartMatch(secondMatch));
         Assert.Null(ex);
     }
 
@@ -73,9 +73,9 @@ public partial class Tests
         var fooTeam = new Team("foo");
 
         var firstMatch = new Match(homeTeam,awayTeam);
-        scoreBoard.AddMatch(firstMatch);
+        scoreBoard.AddAndStartMatch(firstMatch);
         var secondMatch = new Match(homeTeam,fooTeam);
-        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
+        Assert.Throws<Exception>(()=>scoreBoard.AddAndStartMatch(secondMatch));
     }
     [Theory]
     [MemberData(nameof(TestDataWithoutScore))]
@@ -88,9 +88,9 @@ public partial class Tests
         var fooTeam = new Team("foo");
 
         var firstMatch = new Match(homeTeam,awayTeam);
-        scoreBoard.AddMatch(firstMatch);
+        scoreBoard.AddAndStartMatch(firstMatch);
         var secondMatch = new Match(fooTeam,awayTeam);
-        Assert.Throws<Exception>(()=>scoreBoard.AddMatch(secondMatch));
+        Assert.Throws<Exception>(()=>scoreBoard.AddAndStartMatch(secondMatch));
     }
 
     [Fact]
@@ -100,8 +100,7 @@ public partial class Tests
             var newHomeTeam = new Team((string)matchData[0]);
             var newAwayTeam = new Team((string)matchData[2]);
             var newMatch = new Match(newHomeTeam,newAwayTeam);
-            scoreBoard.AddMatch(newMatch);
-            newMatch.StartMatch();
+            scoreBoard.AddAndStartMatch(newMatch);
             newMatch.UpdateScore((int)matchData[1],(int)matchData[3]);
             System.Threading.Thread.Sleep(10);
         }
@@ -130,8 +129,7 @@ public partial class Tests
             var newHomeTeam = new Team((string)matchData[0]);
             var newAwayTeam = new Team((string)matchData[2]);
             var newMatch = new Match(newHomeTeam,newAwayTeam);
-            scoreBoard.AddMatch(newMatch);
-            newMatch.StartMatch();
+            scoreBoard.AddAndStartMatch(newMatch);
             newMatch.UpdateScore((int)matchData[1],(int)matchData[3]);
             if((bool)matchData[4]){
                 newMatch.FinishMatch();

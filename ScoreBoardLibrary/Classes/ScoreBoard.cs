@@ -14,7 +14,23 @@ public class ScoreBoard : IScoreBoard
     }    
     public void AddMatch(IMatch match)
     {
+        if(MatchList.Any(
+            x => x.Status != MatchStatus.FINISHED && 
+            (
+                x.HomeTeam.Name == match.HomeTeam.Name 
+                || x.HomeTeam.Name == match.AwayTeam.Name 
+                || x.AwayTeam.Name == match.HomeTeam.Name 
+                || x.AwayTeam.Name == match.AwayTeam.Name
+            )
+        )){
+            throw new Exception("Home Team and Away Team should not be in an unfinished match!");
+        }
         MatchList.Add(match);
+    }
+
+    public void AddAndStartMatch(IMatch match){
+        AddMatch(match);
+        match.StartMatch();
     }
 
     public List<IMatch> GetSummaryOfMatches()

@@ -6,6 +6,7 @@ public interface IScoreBoard{
     string Name {get;}
     List<IMatch> MatchList{get;}
     void AddMatch(IMatch match);
+    void AddAndStartMatch(IMatch match);
     List<IMatch> GetSummaryOfMatches();
 
     IMatch? FindMatch(string matchName);
