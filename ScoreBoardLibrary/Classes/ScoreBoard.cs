@@ -44,4 +44,15 @@ public class ScoreBoard : IScoreBoard
     {
         return MatchList.Find(x => x.GetMatchName().Equals(matchName));
     }
+
+    public string GetTextSummaryOfMatches()
+    {
+        var list = GetSummaryOfMatches();
+        string result = "";
+        for(int i = 0; i < list.Count; i++){
+            IMatch match = list[i];
+            result += $"{i+1}. {match.GetMatchNameWithScore()} \n";
+        }
+        return result;
+    }
 }

@@ -3,11 +3,11 @@ using ScoreBoardLibrary.Enums;
 using ScoreBoardLibraryTests;
 namespace ScoreBoardLibraryTests;
 
-public partial class Tests
+public class MatchTests
 {
     [Theory]
-    [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatch(string homeTeamName,string awayTeamName)
+    [MemberData(nameof(TestData.TestDataWithoutScore), MemberType = typeof(TestData))]
+    public void Create_Match_For_Valid_Input(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -18,7 +18,7 @@ public partial class Tests
         Assert.Equal(MatchStatus.NOT_STARTED,match.Status);
     }
     [Fact]
-    public void CreateMatchWithNull_ShouldThrowException()
+    public void Create_Match_With_Null_Should_Throw_Exception()
     {
         #pragma warning disable CS8625 // For testing null
         Assert.Throws<Exception>(()=> new Match(null,null));
@@ -30,7 +30,7 @@ public partial class Tests
     [InlineData(999,-999)]
     [InlineData(-999,999)]
     [InlineData(int.MinValue,int.MinValue)]
-    public void CreateMatch_UpdateWith_NegativeScore_ShouldThrowException(int homeScore,int awayScore)
+    public void Update_Match_With_NegativeScore_Should_Throw_Exception(int homeScore,int awayScore)
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -38,8 +38,8 @@ public partial class Tests
         Assert.Throws<Exception>(()=> match.UpdateScore(homeScore,awayScore));
     }
     [Theory]
-    [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatch_StartMatch(string homeTeamName,string awayTeamName)
+    [MemberData(nameof(TestData.TestDataWithoutScore), MemberType = typeof(TestData))]
+    public void Start_Match_With_Valid_Input(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -51,7 +51,7 @@ public partial class Tests
     }
 
     [Fact]
-    public void CreateMatch_StartInProgressMatch_ShouldThrowException()
+    public void Start_An_In_Progress_Match_Should_Throw_Exception()
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -70,7 +70,7 @@ public partial class Tests
         Assert.Throws<Exception>(()=> match.StartMatch());
     }
     [Fact]
-    public void CreateMatch_FinishMatchBeforeStart_ShouldThrowException()
+    public void Finish_Match_Before_Start_Should_Throw_Exception()
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -78,7 +78,7 @@ public partial class Tests
         Assert.Throws<Exception>(()=> match.FinishMatch());
     }
     [Fact]
-    public void CreateMatch_FinishFinishedMatch_ShouldThrowException()
+    public void Finish_A_Finished_Match_Should_Throw_Exception()
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -89,8 +89,8 @@ public partial class Tests
     }
     
     [Theory]
-    [MemberData(nameof(TestDataWithScore))]
-    public void CreateMatch_UpdateScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
+    [MemberData(nameof(TestData.TestDataWithScore), MemberType = typeof(TestData))]
+    public void Update_Score_With_Valid_Input(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -103,8 +103,8 @@ public partial class Tests
     }
 
     [Theory]
-    [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatch_FinishMatch(string homeTeamName,string awayTeamName)
+    [MemberData(nameof(TestData.TestDataWithoutScore), MemberType = typeof(TestData))]
+    public void Finish_A_Started_Match(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -117,8 +117,8 @@ public partial class Tests
     }
 
     [Theory]
-    [MemberData(nameof(TestDataWithoutScore))]
-    public void CreateMatch_GetMatchName(string homeTeamName,string awayTeamName)
+    [MemberData(nameof(TestData.TestDataWithoutScore), MemberType = typeof(TestData))]
+    public void Get_Match_Name_With_Valid_Input(string homeTeamName,string awayTeamName)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -131,8 +131,8 @@ public partial class Tests
 
 
     [Theory]
-    [MemberData(nameof(TestDataWithScore))]
-    public void CreateMatch_GetMatchNameWithScore(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
+    [MemberData(nameof(TestData.TestDataWithScore), MemberType = typeof(TestData))]
+    public void Get_Match_Name_With_Score_With_Valid_Input(string homeTeamName, int homeTeamScore, string awayTeamName, int awayTeamScore)
     {
         var homeTeam = new Team(homeTeamName);
         var awayTeam = new Team(awayTeamName);
@@ -149,7 +149,7 @@ public partial class Tests
     }
     [Theory]
     [InlineData(int.MaxValue,int.MaxValue)]
-    public void CreateMatch_GetMatchNameWithScore_LargeNumber(int homeScore,int awayScore)
+    public void Update_Match_Score_With_Large_Number_Without_Exception(int homeScore,int awayScore)
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");
@@ -160,7 +160,7 @@ public partial class Tests
     [Theory]
     [InlineData(int.MaxValue,int.MaxValue)]
     [InlineData(int.MinValue,int.MinValue)]
-    public void CreateMatch_GetMatchNameWithScore_TooLarge_ThrowException(int homeScore,int awayScore)
+    public void Update_Match_Score_With_Too_Large_Number_Should_Throw_Exception(int homeScore,int awayScore)
     {
         var homeTeam = new Team("homeTeam");
         var awayTeam = new Team("awayTeam");

@@ -1,6 +1,6 @@
 ﻿namespace ScoreBoardLibraryTests;
 
-public partial class Tests
+public class TestData
 {
     public static IEnumerable<object[]> TestDataWithScore(){
         yield return new object[]{"Mexico",0,"Canada",5};

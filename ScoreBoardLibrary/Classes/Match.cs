@@ -54,7 +54,7 @@ public class Match: IMatch
         ,HomeTeam.Name 
         ,HomeTeamScore.ToString()
         ,AwayTeam.Name
-        ,AwayTeamScore);
+        ,AwayTeamScore.ToString());
     }
     public int GetTotalScore()
     {

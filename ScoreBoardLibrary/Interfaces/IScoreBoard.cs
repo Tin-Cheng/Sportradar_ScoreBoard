@@ -8,6 +8,7 @@ public interface IScoreBoard{
     void AddMatch(IMatch match);
     void AddAndStartMatch(IMatch match);
     List<IMatch> GetSummaryOfMatches();
+    string GetTextSummaryOfMatches();
 
     IMatch? FindMatch(string matchName);
 }
