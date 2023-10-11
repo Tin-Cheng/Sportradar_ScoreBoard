@@ -37,4 +37,19 @@ public partial class Tests
         yield return new object[]{"Argentina",3,"Australia",1};
         yield return new object[]{"Germany",2,"France",2};
     }
+
+    
+    public static IEnumerable<object[]> TestDataWithScoreAndFinished(){
+        yield return new object[]{"Mexico",0,"Canada",5,false};
+        yield return new object[]{"Spain",10,"Brazil",2,true};
+        yield return new object[]{"Germany",2,"France",2,true};
+        yield return new object[]{"Uruguay",6,"Italy",6,false};
+        yield return new object[]{"Argentina",3,"Australia",1,false};
+    }
+    
+    public static IEnumerable<object[]> TestDataWithScoreAndFinishedInSummaryOrder(){
+        yield return new object[]{"Uruguay",6,"Italy",6};
+        yield return new object[]{"Mexico",0,"Canada",5};
+        yield return new object[]{"Argentina",3,"Australia",1};
+    }
 }
