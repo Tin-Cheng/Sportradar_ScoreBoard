@@ -2,6 +2,7 @@
 
 This is a simple implementation for a coding exercise.
 Users of this library can create Teams, Matches, and add them to a live Scoreboard.
+Users can then collect a summary of live matches, order by total score and most recently started match.
 
 ## Tech Stack
 - .NET 7
@@ -17,8 +18,10 @@ Users of this library can create Teams, Matches, and add them to a live Scoreboa
 - Each Match will contains one home team and one away team
 - One Score Board will have many matches
 - One Score Board can generate many Summaries
-  
-- A more complete yet complex solution can be only allow pending match to be added into Score Board.
+
+
+  Other thought:
+- A more complete yet complex solution is that Score Board only accept pending Matches to be added into the list.
 - Score Board then takes full control of matches, including: status, remove matches from the In-progress list and add them to an archived list, maintain an unsorted collection of in game teams, etc
 - The above is not implemented to keep things simple.
 
@@ -35,6 +38,8 @@ var MexicoTeam = new Team("Mexico");
 var CanadaTeam = new Team("Canada");
 var match = new Match(MexicoTeam,CanadaTeam);
 scoreBoard.AddAndStartMatch(match);
+//scoreBoard.AddMatch(match); //or add first, then start later
+//match.StartMatch();
 var searchedMatch = scoreBoard.FindMatch("Mexico - Canada");
 searchedMatch.UpdateScore(0,5);
 
