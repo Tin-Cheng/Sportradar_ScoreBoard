@@ -2,29 +2,44 @@
 
 This is a simple implementation for a coding exercise.
 Users of this library can create Teams, Matches, and add them to a live Scoreboard.
+Users can then collect a summary of live matches, order by total score and most recently started match.
 
-##Tech Stack
+## Tech Stack
 - .NET 7
 - xUnit
 
-##Assumptions
+## Assumptions
 - There are no two teams of the same name
 - If a team is involved in an unfinished match, no new match can be added to the score board. This is not a schedule table.
 - When finish a match, "removes a match" from the scoreboard mean removing the match from Summary.
 - Otherwise, match should reference to the scoreboard, and remove itself in the finish function.
 - The number of matches will not be too large that it may cause performance issue
-- A more complete solution will only allow NOT_STARTED match to be added into Score Board. Score Board then takes full control of matches, including statuses, remove matches from the In progress list and add them to an acheive list, maintain an unsorted collect of in game teams, etc
+- There are 3 match status, Pending > In Progress > Finished
+- Each Match will contains one home team and one away team
+- One Score Board will have many matches
+- One Score Board can generate many Summaries
+
+
+  Other thought:
+- A more complete yet complex solution is that Score Board only accept pending Matches to be added into the list.
+- Score Board then takes full control of matches, including: status, remove matches from the In-progress list and add them to an archived list, maintain an unsorted collection of in game teams, etc
 - The above is not implemented to keep things simple.
 
 
-Usages
+## Usages
 
-'''csharp
+Include the classes and references in your project.
+The following is an example to create objects, update matches score and status and retrieve summary.
+
+
+```csharp
 var scoreBoard = new ScoreBoard("FootballWorldCup");
 var MexicoTeam = new Team("Mexico");
 var CanadaTeam = new Team("Canada");
 var match = new Match(MexicoTeam,CanadaTeam);
 scoreBoard.AddAndStartMatch(match);
+//scoreBoard.AddMatch(match); //or add first, then start later
+//match.StartMatch();
 var searchedMatch = scoreBoard.FindMatch("Mexico - Canada");
 searchedMatch.UpdateScore(0,5);
 
@@ -35,3 +50,7 @@ string summary = scoreBoard.GetTextSummaryOfMatches(); //1. Mexico 0 - Canada 5
 
 match.FinishMatch();
 string summary2 = scoreBoard.GetTextSummaryOfMatches(); //empty string
+```
+Run "dotnet test" to check test.
+
+
