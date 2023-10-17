@@ -52,12 +52,5 @@ public class TestData
         yield return new object[]{"Mexico",0,"Canada",5};
         yield return new object[]{"Argentina",3,"Australia",1};
     }
-
-    public static IEnumerable<object[]> TestDataWithSameTeam(){
-        yield return new object[]{"Mexico","Canada",5,2,3,2};
-        yield return new object[]{"Spain","Brazil",2,4,3,2};
-        yield return new object[]{"Germany","France",2,6,1,2};
-        yield return new object[]{"Uruguay","Italy",6,6,4,3};
-        yield return new object[]{"Argentina","Australia",1,1,3,3};
-    }
+    
 }
